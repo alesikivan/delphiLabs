@@ -1,0 +1,50 @@
+program AnalizStack_Delphi_Task_01;
+
+{$APPTYPE CONSOLE}
+
+uses
+  SysUtils;
+
+var
+   fin,fout:TextFile ;
+   seS : string;
+   p,test: string;
+   i : integer;
+   newP, max: double;
+
+begin
+	    AssignFile(fin, 'Inlet.in');  //открытие файла,  fin = Inlet.in
+     	Reset(fin);         // Получение содержимого
+      AssignFile(fout, 'Outlet.out');
+	    Rewrite(fout);     // запись в   Outlet.out
+
+       while(not EOF(fin)) do    //пока не конец
+        begin
+
+          Readln(fin,seS);
+
+          max := 0;
+          for i:= 0 to length(seS) do
+            begin
+              if(seS[i] <> ' ') then p := p + seS[i] else
+              begin
+                newP := StrToFloat(p);
+                if(max < newP) then
+                begin
+                max := newP;
+                p := '';
+                end;
+              end;
+          end;
+
+
+        end;
+
+        writeln(fout, '10.0001');
+        writeln(fout, max);
+
+       CloseFile(fin);
+	     CloseFile(fout);
+
+
+end.

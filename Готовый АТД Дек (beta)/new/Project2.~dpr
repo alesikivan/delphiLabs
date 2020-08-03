@@ -1,0 +1,70 @@
+Program Project2;
+{$APPTYPE CONSOLE}
+
+{$R *.res}
+
+uses
+  SysUtils;
+
+//type
+//someDottes = set of 'a';
+
+var
+  fin,fout:TextFile ;
+ // newSomeDottes : someDottes;
+  seS : string;
+  text : char;
+   s,p,y, newP: string;
+   kolPr : integer;
+   i, k: integer;
+
+begin
+	AssignFile(fin, 'Inlet.in');  //открытие файла,  fin = Inlet.in
+     	Reset(fin);         // Получение содержимого
+       AssignFile(fout, 'Outlet.out');
+ 	Rewrite(fout);     // запись в   Outlet.out
+
+   //someDottes := ['a'];
+
+
+
+	  	    Readln(fin,seS);
+
+              for i := 1 to length(seS) do
+                begin
+                  if (seS[i] <> ' ') then
+                  p := p + seS[i]
+                    else
+                      begin
+                        for k := 1 to length(p) do
+                          if (p[i]<>'.') then
+                           y:= y + p[i];
+                          {begin
+                            if(p[i] in someDottes) then
+                            begin
+                             writeln(fout, newP);
+                             break;
+                            end
+                            else
+                              begin
+                                newP := newP + p[i]
+                              end;
+                           end;}
+                                writeln(fout, y);
+                        p := '';
+                      end;
+
+
+
+
+        end;
+
+        writeln(fout, 1);
+
+
+       CloseFile(fin)    ;
+	CloseFile(fout) ;
+
+end.
+
+
